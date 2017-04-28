@@ -7,10 +7,15 @@ var extractSass = new ExtractTextPlugin({
 });
 
 module.exports = {
-	entry: './client/index.js',
+	entry: ['./client/index.js', './client/main.scss'],
 	output: {
 		filename: 'bundle.js',
 		path: path.resolve(__dirname, 'dist')
+	},
+
+	devtool: "cheap-eval-source-map",
+	devServer: {
+		contentBase: 'dist'
 	},
 
 	module: {
@@ -26,7 +31,7 @@ module.exports = {
 				}
 			},
 			{
-	            test: /\.scss$/,
+	            test: /\.s?css$/,
 	            use: extractSass.extract({
 	                use: [{
 	                    loader: "css-loader"
@@ -39,6 +44,9 @@ module.exports = {
 	        }
 		]
 	},
+
+	plugins: [
+		extractSass
+	]
 	
-	devtool: "cheap-eval-source-map"
 };

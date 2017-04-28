@@ -2,10 +2,10 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import {
   BrowserRouter as Router,
-  Route,
-  Link
+  Route
 } from 'react-router-dom'
 
+import Nav from './components/Nav'
 import Home from './pages/Home'
 import About from './pages/About'
 
@@ -16,12 +16,7 @@ class App extends React.Component {
 		return (
 			<Router>
 				<div>
-					<ul>
-						<li><Link to="/">Home</Link></li>
-						<li><Link to="/about">About</Link></li>
-					</ul>
-
-					<hr/>
+					<Nav />
 
 					<Route exact path="/" component={Home}/>
 					<Route path="/about" component={About}/>
