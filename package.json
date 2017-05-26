@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "NODE_ENV=development webpack-dev-server"
+    "dev": "nodemon ./server/server.js"
   },
   "repository": {
     "type": "git",
@@ -19,6 +19,8 @@
   "homepage": "https://github.com/luoyang9/timeline#readme",
   "dependencies": {
     "antd": "^2.9.3",
+    "body-parser": "^1.17.2",
+    "cookie-parser": "^1.4.3",
     "express": "^4.15.2",
     "mysql": "^2.13.0",
     "react": "^15.5.4",
@@ -33,6 +35,7 @@
     "css-loader": "^0.28.0",
     "extract-text-webpack-plugin": "^2.1.0",
     "node-sass": "^4.5.2",
+    "nodemon": "^1.11.0",
     "sass-loader": "^6.0.3",
     "style-loader": "^0.16.1",
     "webpack": "^2.4.1",

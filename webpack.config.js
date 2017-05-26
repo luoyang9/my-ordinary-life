@@ -1,22 +1,24 @@
 var path = require('path');
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
+var debug = process.env.NODE_ENV === "development";
 
 var extractSass = new ExtractTextPlugin({
-    filename: "[name].[contenthash].css",
-    disable: process.env.NODE_ENV === "development"
+    filename: "main.css",
+    disable: debug
 });
 
 module.exports = {
-	entry: ['./client/index.js', './client/main.scss'],
+	context: path.join(__dirname, "client"),
+	entry: [
+		'./index.js', 
+		'./main.scss'
+	],
 	output: {
 		filename: 'bundle.js',
 		path: path.resolve(__dirname, 'dist')
 	},
 
-	devtool: "cheap-eval-source-map",
-	devServer: {
-		contentBase: 'dist'
-	},
+	devtool: debug ? "inline-sourcemap" : false,
 
 	module: {
 		rules: [
@@ -47,6 +49,10 @@ module.exports = {
 
 	plugins: [
 		extractSass
-	]
+	],
 	
+	devServer: {
+		publicPath: '/',
+		contentBase: './dist'
+	},
 };
