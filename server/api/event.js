@@ -1,15 +1,14 @@
 const router = require('express').Router();
+const eventsController = require('../controllers').events;
 
-module.exports = (db) => {
+router.post('/', eventsController.create);
 
-  router.post('/new', (req, res) => {
+router.get('/:userId', eventsController.list);
 
-  });
+router.get('/:id', (req, res) => {
+  
+});
 
-  router.get('/:id', (req, res) => {
-    
-  });
+router.delete('/', eventsController.delete);
 
-  return router;
-
-}
+module.exports = router;
