@@ -4,7 +4,7 @@ module.exports = {
 	create(req, res) {
 		return Event.create({
 			title: req.body.title,
-			userId: req.body.userId
+			userId: req.auth.userId
 		})
 		.then(event => res.status(201).send(event))
 		.catch(err => res.status(400).send(err));
@@ -13,7 +13,8 @@ module.exports = {
 	delete(req, res) {
 		return Event.destroy({
 			where: {
-				id: req.body.id
+				id: req.body.id,
+				userId: req.auth.userId
 			}
 		})
 		.then(event => res.status(204))
@@ -23,10 +24,10 @@ module.exports = {
 	list(req, res) {
 		return Event.findAll({
 			where: {
-				userId: req.params.userId
+				userId: req.auth.userId
 			}
 		})
 		.then(events => res.status(200).send(events))
-		.catch(err => res.status(400).send(err));
+		.catch(err => res.status(400).json({err: err}));
 	}
 }

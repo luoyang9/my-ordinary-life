@@ -1,8 +1,9 @@
-var path = require('path');
-var ExtractTextPlugin = require("extract-text-webpack-plugin");
-var debug = process.env.NODE_ENV === "development";
+const path = require('path');
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const debug = process.env.NODE_ENV === "development";
+const webpack = require('webpack');
 
-var extractSass = new ExtractTextPlugin({
+const extractSass = new ExtractTextPlugin({
     filename: "main.css",
     disable: debug
 });
@@ -10,15 +11,19 @@ var extractSass = new ExtractTextPlugin({
 module.exports = {
 	context: path.join(__dirname, "client"),
 	entry: [
+		"babel-polyfill",
+      	'react-hot-loader/patch',
+		"whatwg-fetch",
 		'./index.js', 
 		'./main.scss'
 	],
 	output: {
 		filename: 'bundle.js',
-		path: path.resolve(__dirname, 'dist')
+		path: path.resolve(__dirname, 'dist/public')
 	},
 
-	devtool: debug ? "inline-sourcemap" : false,
+	// devtool: debug ? "inline-sourcemap" : false,
+	devtool: "inline-sourcemap",
 
 	module: {
 		rules: [
@@ -28,7 +33,16 @@ module.exports = {
 				use: {
 					loader: 'babel-loader',
 					options: {
-						presets: ['env', 'react']
+						presets: ['env', 'react'],
+						plugins: [
+							'react-hot-loader/babel',
+							'transform-async-to-generator', 
+							'transform-decorators-legacy', 
+							'transform-class-properties',
+							['import', {
+								"libraryName": "antd"
+							}]
+						]
 					}
 				}
 			},
@@ -48,10 +62,12 @@ module.exports = {
 	},
 
 	plugins: [
+		//new webpack.HotModuleReplacementPlugin(), // Enable HMR
 		extractSass
 	],
 	
 	devServer: {
+		//hot: true,
 		publicPath: '/',
 		contentBase: './dist'
 	},

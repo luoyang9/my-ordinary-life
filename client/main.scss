@@ -1,5 +1,43 @@
 @import "~antd/dist/antd.min.css";
 
 h1 {
-	font-size: 30px;
+	font-weight: normal;
+	font-size: 20px;
+}
+
+.logo_header {
+	text-align: center;
+	padding: 20px;
+}
+
+.events_header {
+	margin-bottom: 15px;
+}
+
+.btn_logout {
+	float: right;
+}
+
+.login_container {
+	text-align: center;
+
+	.login_input {
+		max-width: 200px;
+		margin: 2px 0;
+	}
+
+	.btn_login {
+		margin-top: 10px;
+		margin-bottom: 5px;
+	}
+
+	.btn_signup {
+		margin-top: 10px;
+		margin-bottom: 5px;
+	}
+
+	.switch_login:hover {
+		cursor: pointer;
+		color: black;
+	}
 }

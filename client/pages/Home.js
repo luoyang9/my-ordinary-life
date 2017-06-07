@@ -1,25 +1,44 @@
 import React from 'react'
-import { Row, Col } from 'antd'
+import { observer } from "mobx-react"
+import { Row, Col, Button } from 'antd'
 
 import Login from '../components/Login'
+import Events from './Events'
 
+@observer
 export default class Home extends React.Component {
+	constructor(props) {
+		super(props);
+
+		this.signIn = () => {
+			this.props.userStore.signIn();
+		}
+
+		this.logout = () => {
+			document.cookie = "token=;expires=Thu, 01 Jan 1970 00:00:01 GMT;";
+			this.props.userStore.signOut();
+		};
+	}
 
 	render() {
-		if(this.props.user) {
-			return <div>signed in</div>
-		} else {
-			return (
-				<div>
-					<Row>
-						<Col offset={6} span={12}>
-							<h1 style={{textAlign: "center"}}>Timeline</h1>
-						</Col>
-					</Row>
-					<Login />
-				</div>
-			);
-		}
+		return (
+			<div>
+				<Row>
+					<Col offset={6} span={12}>
+						<h1 className="logo_header">timeline</h1>
+						{
+							this.props.userStore.signedIn && 
+								<Button className="btn_logout" onClick={this.logout}>Logout</Button>
+						}
+					</Col>
+				</Row>
+				{ 
+					this.props.userStore.signedIn 
+						? <Events eventStore={this.props.eventStore} />
+						: <Login signIn={this.signIn} />
+				}
+			</div>
+		);
 	}
 
 }

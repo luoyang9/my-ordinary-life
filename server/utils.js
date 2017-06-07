@@ -9,8 +9,8 @@ module.exports = {
 
 	hashPassword(password, salt) {
 		const hash = crypto.createHmac('sha512', salt); /** Hashing algorithm sha512 */
-    hash.update(password);
-    const value = hash.digest('hex');
-    return value;
+	    hash.update(password);
+	    const value = hash.digest('hex');
+	    return value;
 	}
 }

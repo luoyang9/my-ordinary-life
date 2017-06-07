@@ -1,31 +1,26 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import {
-  BrowserRouter as Router,
-  Route
-} from 'react-router-dom'
+// import { AppContainer } from 'react-hot-loader'
 
-import Nav from './components/Nav'
-import Home from './pages/Home'
-import About from './pages/About'
-
-
-class App extends React.Component {
-
-	render() {
-		return (
-			<Router>
-				<div>
-					<Nav />
-
-					<Route exact path="/" component={Home}/>
-					<Route path="/about" component={About}/>
-				</div>
-			</Router>
-		);
-	}
-
-}
-
+import App from './app'
 
 ReactDOM.render(<App />, document.getElementById('app'));
+// ReactDOM.render(
+// 	<AppContainer>
+// 		<App />
+// 	</AppContainer>,
+// 	document.getElementById('app')
+// );
+
+// Hot Module Replacement API
+// if (module.hot) {
+//   module.hot.accept('./app', () => {
+//     const NextApp = require('./app').default;
+//     ReactDOM.render(
+//       <AppContainer>
+//         <NextApp/>
+//       </AppContainer>,
+//       document.getElementById('root')
+//     );
+//   });
+// }
