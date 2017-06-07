@@ -33,6 +33,9 @@
     cursor: pointer;
     color: black; }
 
+.event_container .event_card {
+  margin: 10px 0; }
+
 .new_event_container {
   margin-bottom: 20px; }
   .new_event_container .new_event_title {
@@ -46,7 +49,8 @@
   .new_event_container .new_event_content {
     border: none;
     outline: 0px;
-    -webkit-appearance: none; }
+    -webkit-appearance: none;
+    overflow: hidden; }
   .new_event_container .new_event_save {
     margin-top: 10px; }
 
