@@ -25,7 +25,7 @@ app.use("/api/events", checkUser, eventApi);
 app.use("/api/users", checkUser, userApi);
 
 app.get('/', function(req, res) {
-    res.sendFile('index.html',  { root: "dist/"});
+    res.sendFile('index.html',  { root: path.resolve(__dirname, "../dist/")});
 });
 
 // start app
