@@ -7,6 +7,10 @@ module.exports = (sequelize, DataTypes) => {
     content: {
       type: DataTypes.TEXT,
       allowNull: false
+    },
+    publishDate: {
+      type: DataTypes.DATE,
+      allowNull: false
     }
   }, {
     classMethods: {

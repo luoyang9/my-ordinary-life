@@ -41,3 +41,24 @@ h1 {
 		color: black;
 	}
 }
+
+.new_event_container {
+	margin-bottom: 20px;
+	.new_event_title {
+		border: none;
+		outline: 0px;
+  	-webkit-appearance:none;
+		height: 100%;
+		color: rgba(0,0,0,.85);
+    font-weight: 500;
+		font-size: 14px;
+	}
+	.new_event_content {
+		border: none;
+		outline: 0px;
+  	-webkit-appearance:none;
+	}
+	.new_event_save {
+		margin-top: 10px;
+	}
+}

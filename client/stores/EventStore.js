@@ -1,4 +1,5 @@
 import { observable, computed } from 'mobx'
+import moment from 'moment'
 
 class EventStore {
 	@observable events = [];
@@ -10,6 +11,10 @@ class EventStore {
 
 	setEvents(events) {
 		this.events = events;
+	}
+
+	getPastEvents() {
+		return this.events.filter(event => !moment().isSame(event.publishDate, 'day'));
 	}
 }
 

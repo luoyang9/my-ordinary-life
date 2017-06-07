@@ -1,13 +1,11 @@
 const router = require('express').Router();
 const eventsController = require('../controllers').events;
 
-router.post('/', eventsController.create);
+router.post('/', eventsController.createOrUpdate);
 
-router.get('/all', eventsController.list);
+router.get('/', eventsController.list);
 
-router.get('/:id', (req, res) => {
-  
-});
+router.get('/:year/:month/:day', eventsController.getByDate);
 
 router.delete('/', eventsController.delete);
 

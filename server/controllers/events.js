@@ -1,13 +1,42 @@
+const moment = require('moment');
 const Event = require('../models').Event;
 
 module.exports = {
-	create(req, res) {
-		return Event.create({
-			title: req.body.title,
-			userId: req.auth.userId
-		})
-		.then(event => res.status(201).send(event))
-		.catch(err => res.status(400).send(err));
+	createOrUpdate(req, res) {
+		Event.findOne({
+			where: {
+				publishDate: {
+					$eq: req.body.publishDate
+				},
+				userId: req.auth.userId
+			}
+		}).then(event => {
+			if(!event) {
+				console.log("create today's event");
+				return Event.create({
+					title: req.body.title,
+					content: req.body.content,
+					publishDate: req.body.publishDate,
+					userId: req.auth.userId
+				})
+				.then(event => res.status(201).json(event))
+				.catch(err => res.status(400).json({err: err}));
+			} else {
+				console.log("update event");
+				return Event.update({
+					title: req.body.title,
+					content: req.body.content
+				}, {
+					where: {
+						id: event.id,
+						userId: req.auth.userId
+					}
+				})
+				.then(event => res.status(200).json(event))
+				.catch(err => res.status(400).json({err: err}));
+			}
+		}).catch(err => res.status(400).json({err: err}));
+		
 	},
 
 	delete(req, res) {
@@ -18,7 +47,18 @@ module.exports = {
 			}
 		})
 		.then(event => res.status(204))
-		.catch(err => res.status(400).send(err));
+		.catch(err => res.status(400).json({err: err}));
+	},
+
+	getByDate(req, res) {
+		return Event.findOne({
+			where: {
+				publishDate: req.params.year + "/" + req.params.month + "/" + req.params.day,
+				userId: req.auth.userId
+			}
+		})
+		.then(event => res.status(200).json(event))
+		.catch(err => res.status(400).json({err: err}));
 	},
 
 	list(req, res) {
