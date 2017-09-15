@@ -1,7 +1,7 @@
 .sass-cache/
 *.css.map
 node_modules/
-config/config.json
+server/config/config.json
 config.js
 .elasticbeanstalk/
 .DS_Store
