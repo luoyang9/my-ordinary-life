@@ -22,10 +22,10 @@ router.post('/signup', (req, res) => {
 			name: user.name
 		}
 		const token = jwt.sign(userObj, secret, {
-          expiresIn: "1d" // expires in 24 hours
+          expiresIn: "7d" // expires in a week
         });
 		res.status(201)
-			.cookie('token', token, { expires: new Date(Date.now() + 86400000) })
+			.cookie('token', token, { expires: new Date(Date.now() + 604800000) })
 			.json({
 				token: token
 			});
@@ -52,10 +52,10 @@ router.post('/login', (req, res) => {
 					name: user.name
 				}
 				const token = jwt.sign(userObj, secret, {
-		          expiresIn: "1d" // expires in 24 hours
+		          expiresIn: "7d" // expires in a week
 		        });
 				res.status(200)
-					.cookie('token', token, { expires: new Date(Date.now() + 86400000) })
+					.cookie('token', token, { expires: new Date(Date.now() + 604800000) })
 					.json({
 						token: token
 					});

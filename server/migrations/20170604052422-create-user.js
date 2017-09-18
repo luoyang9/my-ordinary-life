@@ -22,6 +22,14 @@ module.exports = {
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE
+      },
+      password: {
+        allowNull: false,
+        type: Sequelize.STRING
+      },
+      salt: {
+        allowNull: false,
+        type: Sequelize.STRING
       }
     }),
   down: (queryInterface, Sequelize) => queryInterface.dropTable('Users')

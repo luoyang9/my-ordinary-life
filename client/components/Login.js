@@ -14,6 +14,7 @@ export default class Login extends React.Component {
 			password: "",
 			name: "",
 			error: "",
+			showAbout: false
 		}
 
 		this.switchView = () => this.setState({hasAccount: !this.state.hasAccount, error: ""});
@@ -73,66 +74,82 @@ export default class Login extends React.Component {
 		};
 	}
 
+	renderAbout() {
+		return <div>
+			What is this
+			<p onClick={() => this.setState({showAbout: false})}>Back</p>
+		</div>
+	}
+
+	renderSignup() {
+		return <form onSubmit={this.createAccount}>
+			<Row>
+				<Col offset={6} span={12}>
+					<Input className="login_input" placeholder="Name" onChange={this.handleNameChange} value={this.state.name} />
+				</Col>
+			</Row>
+			<Row>
+				<Col offset={6} span={12}>
+					<Input className="login_input" type="email" placeholder="Email" onChange={this.handleEmailChange} value={this.state.email} />
+				</Col>
+			</Row>
+			<Row>
+				<Col offset={6}  span={12}>
+					<Input className="login_input" type="password" placeholder="Password" onChange={this.handlePasswordChange} value={this.state.password} />
+				</Col>
+			</Row>
+			<p style={{color: "red"}}>{this.state.error}</p>
+			<Row>
+				<Col offset={6} span={12} style={{textAlign: "center"}}>
+					<Button className="btn_signup" onClick={this.createAccount}>Create Account</Button>
+				</Col>
+			</Row>
+			<Row>
+				<Col offset={6} span={12} style={{textAlign: "center"}}>
+					<p className="switch_login" onClick={this.switchView}>Log In</p>
+				</Col>
+			</Row>
+			<input type="submit" style={{position: "absolute", left: -9999}} />
+		</form>
+	}
+
+	renderLogin() {
+		return <form onSubmit={this.login}>
+			<Row>
+				<Col offset={6} span={12}>
+					<Input className="login_input" type="email" placeholder="Email" onChange={this.handleEmailChange} value={this.state.email} />
+				</Col>
+			</Row>
+			<Row>
+				<Col offset={6}  span={12}>
+					<Input className="login_input" type="password" placeholder="Password" onChange={this.handlePasswordChange} value={this.state.password} />
+				</Col>
+			</Row>
+			<p style={{color: "red"}}>{this.state.error}</p>
+			<Row>
+				<Col offset={6} span={12} style={{textAlign: "center"}}>
+					<Button className="btn_login" onClick={this.login}>Login</Button>
+				</Col>
+			</Row>
+			<Row>
+				<Col offset={6} span={12} style={{textAlign: "center"}}>
+					<p className="switch_login" onClick={this.switchView}>Register</p>
+				</Col>
+			</Row>
+			<input type="submit" style={{position: "absolute", left: -9999}} />
+		</form>
+	}
+
 	render() {
 		return (
 			<div className="login_container">
 				{
-					this.state.hasAccount 
-
-						? <form onSubmit={this.login}>
-							<Row>
-								<Col offset={6} span={12}>
-									<Input className="login_input" type="email" placeholder="Email" onChange={this.handleEmailChange} value={this.state.email} />
-								</Col>
-							</Row>
-							<Row>
-								<Col offset={6}  span={12}>
-									<Input className="login_input" type="password" placeholder="Password" onChange={this.handlePasswordChange} value={this.state.password} />
-								</Col>
-							</Row>
-							<p style={{color: "red"}}>{this.state.error}</p>
-							<Row>
-								<Col offset={6} span={12} style={{textAlign: "center"}}>
-									<Button className="btn_login" onClick={this.login}>Login</Button>
-								</Col>
-							</Row>
-							<Row>
-								<Col offset={6} span={12} style={{textAlign: "center"}}>
-									<p className="switch_login" onClick={this.switchView}>Register</p>
-								</Col>
-							</Row>
-							<input type="submit" style={{position: "absolute", left: -9999}} />
-						</form>
-
-						: <form onSubmit={this.createAccount}>
-							<Row>
-								<Col offset={6} span={12}>
-									<Input className="login_input" placeholder="Name" onChange={this.handleNameChange} value={this.state.name} />
-								</Col>
-							</Row>
-							<Row>
-								<Col offset={6} span={12}>
-									<Input className="login_input" type="email" placeholder="Email" onChange={this.handleEmailChange} value={this.state.email} />
-								</Col>
-							</Row>
-							<Row>
-								<Col offset={6}  span={12}>
-									<Input className="login_input" type="password" placeholder="Password" onChange={this.handlePasswordChange} value={this.state.password} />
-								</Col>
-							</Row>
-							<p style={{color: "red"}}>{this.state.error}</p>
-							<Row>
-								<Col offset={6} span={12} style={{textAlign: "center"}}>
-									<Button className="btn_signup" onClick={this.createAccount}>Create Account</Button>
-								</Col>
-							</Row>
-							<Row>
-								<Col offset={6} span={12} style={{textAlign: "center"}}>
-									<p className="switch_login" onClick={this.switchView}>Log In</p>
-								</Col>
-							</Row>
-							<input type="submit" style={{position: "absolute", left: -9999}} />
-						</form>
+					this.state.showAbout 
+						? this.renderAbout()
+						: <div>
+							{ this.state.hasAccount ? this.renderLogin() : this.renderSignup() }
+							<p onClick={() => this.setState({showAbout: true})}>What is this?</p>
+						</div> 
 				}
 			</div>
 		);
