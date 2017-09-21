@@ -11,7 +11,6 @@ module.exports = {
 			}
 		}).then(event => {
 			if(!event) {
-				console.log("create today's event");
 				return Event.create({
 					title: req.body.title,
 					content: req.body.content,
@@ -21,7 +20,6 @@ module.exports = {
 				.then(event => res.status(201).json(event))
 				.catch(err => res.status(400).json({err: err}));
 			} else {
-				console.log("update event");
 				return Event.update({
 					title: req.body.title,
 					content: req.body.content

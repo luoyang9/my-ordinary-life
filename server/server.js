@@ -5,6 +5,7 @@ const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser"); 
 const jwt = require('jsonwebtoken');
 const compression = require('compression');
+const helmet = require('helmet');
 
 const { secret } = require('./config')
 const eventApi = require('./api/event');
@@ -14,6 +15,7 @@ const authApi = require('./api/auth');
 //express app
 const app = express();	
 app.use(compression());
+app.use(helmet());
 
 app.use(express.static(path.resolve(__dirname + '/../dist/public')));
 
@@ -31,8 +33,8 @@ app.get('/', function(req, res) {
 });
 
 // start app
-app.listen(8080, (error) => {
-  if (!error) {
+app.listen(process.env.PORT || 8080, (error) => {
+  if (!error && process.env.NODE_ENV !== "production") {
     console.log(`Timeline is running on port 8080!`); 
   }
 });
