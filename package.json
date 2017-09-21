@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "tape 'server/tests/**/*.js'",
     "dev": "NODE_ENV=test nodemon ./server/server.js",
     "prod": "PORT=80 NODE_ENV=production node ./server/server.js"
   },
@@ -53,6 +53,7 @@
     "sass-loader": "^6.0.3",
     "sequelize-cli": "^2.7.0",
     "style-loader": "^0.16.1",
+    "tape": "^4.8.0",
     "webpack": "^2.4.1",
     "webpack-dev-server": "^2.4.5"
   }
