@@ -1,4 +1,3 @@
-const moment = require('moment');
 const Event = require('../models').Event;
 
 module.exports = {

@@ -1,6 +1,5 @@
 import React from 'react'
 import { Input, Row, Col, Button } from 'antd'
-import moment from 'moment'
 import api from '../api.js'
 
 export default class Login extends React.Component {

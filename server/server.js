@@ -4,6 +4,7 @@ const path = require("path");
 const bodyParser = require("body-parser"); 
 const cookieParser = require("cookie-parser"); 
 const jwt = require('jsonwebtoken');
+const compression = require('compression');
 
 const { secret } = require('./config')
 const eventApi = require('./api/event');
@@ -12,6 +13,7 @@ const authApi = require('./api/auth');
 
 //express app
 const app = express();	
+app.use(compression());
 
 app.use(express.static(path.resolve(__dirname + '/../dist/public')));
 
