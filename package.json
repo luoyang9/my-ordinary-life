@@ -6,7 +6,7 @@
   "scripts": {
     "test": "tape 'server/tests/**/*.js'",
     "dev": "NODE_ENV=test nodemon ./server/server.js",
-    "prod": "PORT=80 NODE_ENV=production node ./server/server.js"
+    "prod": "PORT=80 NODE_ENV=production forever start ./server/server.js"
   },
   "repository": {
     "type": "git",
