@@ -1,5 +1,5 @@
 {
-  "name": "timeline",
+  "name": "my-ordinary-life",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -10,14 +10,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/luoyang9/timeline.git"
+    "url": "git+https://github.com/luoyang9/my-ordinary-life.git"
   },
   "author": "charlie",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/luoyang9/timeline/issues"
+    "url": "https://github.com/luoyang9/my-ordinary-life/issues"
   },
-  "homepage": "https://github.com/luoyang9/timeline#readme",
+  "homepage": "https://github.com/luoyang9/my-ordinary-life#readme",
   "dependencies": {
     "antd": "^2.9.3",
     "babel-polyfill": "^6.23.0",

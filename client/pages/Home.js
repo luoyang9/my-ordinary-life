@@ -25,7 +25,7 @@ export default class Home extends React.Component {
 			<div>
 				<Row>
 					<Col offset={6} span={12}>
-						<h1 className="logo_header">timeline</h1>
+						<h1 className="logo_header">my ordinary life</h1>
 						{
 							this.props.userStore.signedIn && 
 								<Button className="btn_logout" onClick={this.logout}>Logout</Button>

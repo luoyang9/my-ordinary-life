@@ -35,7 +35,7 @@ app.get('/', function(req, res) {
 // start app
 app.listen(process.env.PORT || 8080, (error) => {
   if (!error && process.env.NODE_ENV !== "production") {
-    console.log(`Timeline is running on port 8080!`); 
+    console.log(`my ordinary life is running on port 8080!`); 
   }
 });
 
