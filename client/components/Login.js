@@ -1,5 +1,6 @@
 import React from 'react'
 import { Input, Row, Col, Button } from 'antd'
+import { Link } from 'react-router-dom'
 import api from '../api.js'
 
 export default class Login extends React.Component {
@@ -75,8 +76,9 @@ export default class Login extends React.Component {
 
 	renderAbout() {
 		return <div>
-			What is this
-			<p onClick={() => this.setState({showAbout: false})}>Back</p>
+			<p>What is this?</p>
+			<p className="short_about">My ordinary life is your everyday journal. Write daily entries about whatever you want, and look back on past memories days, months, or years later. <Link to='/about'>More details.</Link></p>
+			<p className="hover_indicate" onClick={() => this.setState({showAbout: false})}>Back</p>
 		</div>
 	}
 
@@ -105,7 +107,7 @@ export default class Login extends React.Component {
 			</Row>
 			<Row>
 				<Col offset={6} span={12} style={{textAlign: "center"}}>
-					<p className="switch_login" onClick={this.switchView}>Log In</p>
+					<p className="hover_indicate" onClick={this.switchView}>Log In</p>
 				</Col>
 			</Row>
 			<input type="submit" style={{position: "absolute", left: -9999}} />
@@ -132,7 +134,7 @@ export default class Login extends React.Component {
 			</Row>
 			<Row>
 				<Col offset={6} span={12} style={{textAlign: "center"}}>
-					<p className="switch_login" onClick={this.switchView}>Register</p>
+					<p className="hover_indicate" onClick={this.switchView}>Register</p>
 				</Col>
 			</Row>
 			<input type="submit" style={{position: "absolute", left: -9999}} />
@@ -147,7 +149,7 @@ export default class Login extends React.Component {
 						? this.renderAbout()
 						: <div>
 							{ this.state.hasAccount ? this.renderLogin() : this.renderSignup() }
-							<p onClick={() => this.setState({showAbout: true})}>What is this?</p>
+							<p className="hover_indicate" onClick={() => this.setState({showAbout: true})}>What is this?</p>
 						</div> 
 				}
 			</div>

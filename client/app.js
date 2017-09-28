@@ -1,8 +1,7 @@
 import React from 'react'
 import {
   BrowserRouter as Router,
-  Route,
-  PrivateRoute
+  Route
 } from 'react-router-dom'
 
 import Nav from './components/Nav'
@@ -24,8 +23,6 @@ export default class App extends React.Component {
 						<Home userStore={userStore} eventStore={eventStore} />
 					} />
 					<Route path="/about" component={About} />
-					{//<PrivateRoute path="/events" component={Events}/>
-					}
 				</div>
 			</Router>
 		);

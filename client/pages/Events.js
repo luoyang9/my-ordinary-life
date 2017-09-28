@@ -122,15 +122,17 @@ export default class Events extends React.Component {
 	render() {
 		return (
 			<Row>
-				<Col offset={6} span={12}>
-					<h1 className="events_header">today</h1>
-					{ this.renderNewEvent() }
-					<h1 className="events_header">past events</h1>
+				<Col span={24}>
+					<div className="container">
+						<h1 className="events_header">today</h1>
+						{ this.renderNewEvent() }
+						<h1 className="events_header">past events</h1>
 						{
 							this.props.eventStore.loading 
 								? <p>Loading</p> 
 								: this.renderEvents()
 						}
+					</div>
 				</Col>
 			</Row>
 		);

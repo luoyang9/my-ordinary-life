@@ -24,12 +24,14 @@ export default class Home extends React.Component {
 		return (
 			<div>
 				<Row>
-					<Col offset={6} span={12}>
-						<h1 className="logo_header">my ordinary life</h1>
-						{
-							this.props.userStore.signedIn && 
-								<Button className="btn_logout" onClick={this.logout}>Logout</Button>
-						}
+					<Col span={24}>
+						<div className="container">
+							<h1 className="logo_header">my ordinary life</h1>
+							{
+								this.props.userStore.signedIn && 
+									<Button className="btn_logout" onClick={this.logout}>Logout</Button>
+							}
+							</div>
 					</Col>
 				</Row>
 				{ 
