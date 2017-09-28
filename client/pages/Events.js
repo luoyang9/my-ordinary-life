@@ -105,7 +105,8 @@ export default class Events extends React.Component {
 	}
 
 	renderEvents() {
-		return this.props.eventStore.getPastEvents().length > 0 && this.props.eventStore.getPastEvents().map(event => {
+		let pastEvents = this.props.eventStore.getPastEvents();
+		return pastEvents.length > 0 && pastEvents.map(event => {
 			return <div className="event_container" key={event.id}>
 				<Card className="event_card" title={event.title}>
 					<p>{event.content}</p>

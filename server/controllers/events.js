@@ -50,7 +50,7 @@ module.exports = {
 	getByDate(req, res) {
 		return Event.findOne({
 			where: {
-				publishDate: req.params.year + "/" + req.params.month + "/" + req.params.day,
+				publishDate: req.params.year + "-" + req.params.month + "-" + req.params.day,
 				userId: req.auth.userId
 			}
 		})
