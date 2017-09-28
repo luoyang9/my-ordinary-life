@@ -20,14 +20,14 @@ export default class Events extends React.Component {
 			saveTimer: null
 		}
 
-		this.onTitleChange = (evt) => this.setState({message: "", title: evt.target.value})
+		this.onTitleChange = (evt) => {
+			clearTimeout(this.state.saveTimer)
+			this.setState({message: "Writing", title: evt.target.value, saveTimer: setTimeout(this.submitEvent, 1000)})
+		}
+
 		this.onContentChange = (evt) => {
 			clearTimeout(this.state.saveTimer)
 			this.setState({message: "Writing...", content: evt.target.value, saveTimer: setTimeout(this.submitEvent, 1000)})
-		};
-		this.onContentInput = (evt) => {
-	  	// evt.target.style.height = "";
-		  // evt.target.style.height = evt.target.scrollHeight + "px";
 		};
 
 		this.submitEvent = (evt) => {
@@ -37,7 +37,7 @@ export default class Events extends React.Component {
 			}
 
 			if(!this.state.title || !this.state.content) {
-				this.setState({message: "Please fill out all fields. I wanna hear about your day! :)"});
+				this.setState({message: "Remember to fill out all fields!"});
 				return;
 			}
 
@@ -56,7 +56,7 @@ export default class Events extends React.Component {
 			}).then(event => {
 				if(event.err) {
 					console.error(event.err);
-					this.setState({message: "Failed to save. Try again?"});
+					this.setState({message: "Sorry, failed to save. Try again later?"});
 				} else {
 					this.setState({message: "Saved!", initialTitle: this.state.title, initialContent: this.state.content});
 				}
@@ -95,7 +95,7 @@ export default class Events extends React.Component {
 						onChange={this.onTitleChange} value={this.state.title} />}
 					>
 						<Input type="textarea" className="new_event_content" placeholder="What happened today?" 
-							rows={4} onInput={this.onContentInput} onChange={this.onContentChange} 
+							rows={4} onChange={this.onContentChange} 
 							value={this.state.content} autosize={true}/>
 						<p style={{float: "right", margin: "4px 0"}}>{this.state.message}</p>
 					</Card>
@@ -106,7 +106,10 @@ export default class Events extends React.Component {
 
 	renderEvents() {
 		let pastEvents = this.props.eventStore.getPastEvents();
-		return pastEvents.length > 0 && pastEvents.map(event => {
+		return pastEvents.length > 0 && pastEvents.sort((e1, e2) => {
+			if(moment(e1.publishDate).isBefore(moment(e2.publishDate))) return 1;
+			return 1;
+		}).map(event => {
 			return <div className="event_container" key={event.id}>
 				<Card className="event_card" title={event.title}>
 					<p>{event.content}</p>
