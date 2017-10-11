@@ -16,15 +16,14 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
     }
-  }, {
-    classMethods: {
-      associate: models => {
-        User.hasMany(models.Event, {
-          foreignKey: 'userId',
-          as: 'events'
-        })
-      }
-    }
   });
+
+  User.associate = models => {
+    User.hasMany(models.Event, {
+      foreignKey: 'userId',
+      as: 'events'
+    })
+  }
+  
   return User;
 };

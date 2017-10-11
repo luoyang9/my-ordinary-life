@@ -12,15 +12,15 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.DATEONLY,
       allowNull: false
     }
-  }, {
-    classMethods: {
-      associate: models => {
-        Event.belongsTo(models.User, {
-          foreignKey: 'userId',
-          onDelete: 'CASCADE'
-        })
-      }
-    }
   });
+  
+  
+  Event.associate = models => {
+    Event.belongsTo(models.User, {
+      foreignKey: 'userId',
+      onDelete: 'CASCADE'
+    })
+  }
+
   return Event;
 };
