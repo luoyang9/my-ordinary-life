@@ -96,7 +96,7 @@ export default class Events extends React.Component {
 					>
 						<Input type="textarea" className="new_event_content" placeholder="What happened today?" 
 							rows={4} onChange={this.onContentChange} 
-							value={this.state.content} autosize={true}/>
+							value={this.state.content} autosize={{ minRows: 1, maxRows: 99}}/>
 						<p style={{float: "right", margin: "4px 0"}}>{this.state.message}</p>
 					</Card>
 				</form>
